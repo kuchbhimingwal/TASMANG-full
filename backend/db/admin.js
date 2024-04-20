@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const adminSchema = new Schema({
@@ -20,6 +20,4 @@ const adminSchema = new Schema({
   }
 })
 
-module.exports = {
-  adminSchema
-}
+module.exports = adminSchema
