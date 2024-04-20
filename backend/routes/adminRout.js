@@ -1,7 +1,7 @@
 const express = require('express')
 const adminRouter = express.Router()
-const {Admin} = require("./db/connect")
-const {SECRETKEY} = require("./config")
+const {Admin} = require("../connect")
+const {SECRETKEY} = require("../../config")
 const jwt = require('jsonwebtoken');
 
 adminRouter.get("/signin", async(req,res)=>{
@@ -12,4 +12,5 @@ adminRouter.get("/signin", async(req,res)=>{
   res.status(200).json({msg :"loggen in", token: token});
 })
 
+adminRouter.post("")
 module.exports = adminRouter;
