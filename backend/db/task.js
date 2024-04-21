@@ -1,21 +1,22 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const projectSchema = new Schema({
+const taskSchema = new Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Admin',
+    ref: 'Projects',
     require: true
   },
-  projectName:{
+  taskName:{
     type: String,
     require: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  status: {
+    type: Boolean,
+    require: true,
+    default: false
   },
-  discription:{
+  prority:{
     type: String,
   },
   completionDate: {
@@ -24,4 +25,4 @@ const projectSchema = new Schema({
   }
 })
 
-module.exports = projectSchema;
+module.exports = taskSchema;
