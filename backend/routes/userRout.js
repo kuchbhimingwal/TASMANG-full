@@ -1,7 +1,7 @@
 const express = require('express')
 const userRouter = express.Router()
-const {User, Admin} = require("../connect")
-const {SECRETKEY} = require("../../config")
+const {User, Admin} = require("../db/connect")
+const {SECRETKEY} = require("../config")
 const z = require("zod");
 const jwt = require('jsonwebtoken');
 
