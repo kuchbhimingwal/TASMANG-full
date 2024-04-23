@@ -7,6 +7,11 @@ const taskSchema = new Schema({
     ref: 'Projects',
     require: true
   },
+  assigTo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users',
+    require: true
+  },
   taskName:{
     type: String,
     require: true
@@ -16,7 +21,7 @@ const taskSchema = new Schema({
     require: true,
     default: false
   },
-  prority:{
+  priority:{
     type: String,
   },
   completionDate: {

@@ -1,6 +1,6 @@
 const express = require('express')
 const adminRouter = express.Router()
-const {Admin, Projects} = require("../db/connect")
+const {Admin, Projects, Tasks} = require("../db/connect")
 const z = require("zod")
 const {SECRETKEY} = require("../config")
 const adminAuth = require("../middlewares/adminAuth")
@@ -35,4 +35,23 @@ adminRouter.post("/project",adminAuth, async(req, res)=>{
 
   res.status(200).json({msg: "project created"});
 })
+
+adminRouter.post("/task", async(req, res)=>{
+  const projectId = req.headers.projectid;
+  const assignTo = req.headers.assignto;
+  if(!projectId || !assignTo) return res.status(411).json({msg: "projectId does not match"})
+
+  const taskcreated = await Tasks.create({
+    userId: projectId,
+    assigTo: assignTo,
+    taskName: req.body.taskName,
+    status: req.body.status,
+    priority: req.body.priority,
+    completionDate: req.body.completionDate
+  })
+
+  if(!taskcreated) return res.status(411).json({msg: "error with db"});
+
+  res.status(200).json({msg: "task created"})
+})  
 module.exports = adminRouter;
