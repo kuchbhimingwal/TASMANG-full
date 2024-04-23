@@ -1,6 +1,6 @@
 const express = require('express')
 const userRouter = express.Router()
-const {User, Admin, Projects} = require("../db/connect")
+const {User, Admin, Projects,Tasks} = require("../db/connect")
 const {SECRETKEY} = require("../config")
 const z = require("zod");
 const jwt = require('jsonwebtoken');
@@ -47,4 +47,53 @@ userRouter.get("/projects",userAuth, async(req,res)=>{
 
   res.status(200).send(projects)
 })
+
+userRouter.get('/project', userAuth, async(req,res)=>{
+  const projectId = req.query.projectId;
+  const project = await Projects.findById(projectId);
+
+  if(!project) return res.status(411).json({msg: "invalid id"});
+
+  res.status(200).send(project)
+})
+userRouter.get('/tasksInProject', userAuth, async(req, res)=>{
+  const projectId = req.query.projectId;
+
+  const tasks = await Tasks.find({userId: projectId});
+
+  if(!tasks) return res.status(411).json({msg: "wrong id"});
+
+  res.status(200).send(tasks)
+});
+
+userRouter.get("/tasks",userAuth, async(req,res)=>{
+  const tasks = await Tasks.find({});
+  if(!tasks) return res.status(411).json({msg: "error looking for tasks"});
+  res.status(200).send(tasks)
+})
+userRouter.get('/projectbyid',userAuth, async(req, res)=>{
+  const projectId = req.query.projectId
+  const projectById = await Projects.findById(projectId)
+
+  if(!projectById) return res.status(411).json({msg: "invalid id"});
+
+  res.status(200).send(projectById);
+})
+userRouter.get('/getuser',userAuth, async(req, res)=>{
+  const userId = req.query.userId;
+  const user = await User.findById(userId);
+
+  if(!user) return res.status(411).json({msg: "invalid id"});
+
+  res.status(200).send(user)
+})
+
+userRouter.get('/getUsers',userAuth, async(req, res)=>{
+  const users = await User.find({});
+
+  if(!users) return res.status(411).json({msg: "invalid id"});
+
+  res.status(200).send(users);
+})
+userRouter.get('/tasks/get')
 module.exports = userRouter;
