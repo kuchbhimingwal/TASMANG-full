@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Input from '../components/Input'
 function Login() {
   return (
-    <div>Login</div>
+    <div>
+      <Input label = "email" placeholder="email" />
+    </div>
   )
 }
 
