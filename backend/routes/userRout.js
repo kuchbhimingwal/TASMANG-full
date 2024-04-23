@@ -71,6 +71,16 @@ userRouter.get("/tasks",userAuth, async(req,res)=>{
   if(!tasks) return res.status(411).json({msg: "error looking for tasks"});
   res.status(200).send(tasks)
 })
+userRouter.get('/tasksInUser', userAuth, async(req, res)=>{
+  const userId = req.query.userId;
+
+  const tasks = await Tasks.find({assigTo: userId});
+
+  if(!tasks) return res.status(411).json({msg: "wrong id"});
+
+  res.status(200).send(tasks)
+});
+
 userRouter.get('/projectbyid',userAuth, async(req, res)=>{
   const projectId = req.query.projectId
   const projectById = await Projects.findById(projectId)
@@ -78,7 +88,7 @@ userRouter.get('/projectbyid',userAuth, async(req, res)=>{
   if(!projectById) return res.status(411).json({msg: "invalid id"});
 
   res.status(200).send(projectById);
-})
+});
 userRouter.get('/getuser',userAuth, async(req, res)=>{
   const userId = req.query.userId;
   const user = await User.findById(userId);
@@ -86,7 +96,7 @@ userRouter.get('/getuser',userAuth, async(req, res)=>{
   if(!user) return res.status(411).json({msg: "invalid id"});
 
   res.status(200).send(user)
-})
+});
 
 userRouter.get('/getUsers',userAuth, async(req, res)=>{
   const users = await User.find({});
