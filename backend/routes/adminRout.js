@@ -54,4 +54,14 @@ adminRouter.post("/task", async(req, res)=>{
 
   res.status(200).json({msg: "task created"})
 })  
+
+// all the get 
+
+adminRouter.get("/projects",adminAuth, async(req,res)=>{
+  const projects = await Projects.find({});
+
+  if(!projects) return res.status(411).json({msg: "error looking for projects"});
+
+  res.status(200).send(projects)
+})
 module.exports = adminRouter;

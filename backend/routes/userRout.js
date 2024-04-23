@@ -1,9 +1,10 @@
 const express = require('express')
 const userRouter = express.Router()
-const {User, Admin} = require("../db/connect")
+const {User, Admin, Projects} = require("../db/connect")
 const {SECRETKEY} = require("../config")
 const z = require("zod");
 const jwt = require('jsonwebtoken');
+const userAuth = require("../middlewares/userAuth")
 
 const userSchema = z.object({
   firstname: z.string(),
@@ -39,4 +40,11 @@ userRouter.get("/signin", async(req,res)=>{
   res.status(200).json({msg :"loggen in", token: token});
 })
 
+userRouter.get("/projects",userAuth, async(req,res)=>{
+  const projects = await Projects.find({});
+
+  if(!projects) return res.status(411).json({msg: "error looking for projects"});
+
+  res.status(200).send(projects)
+})
 module.exports = userRouter;
