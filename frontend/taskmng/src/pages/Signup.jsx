@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Input from '../components/Input'
 import Buttons from '../components/Buttons'
 import SignuoImg from "../assets/Group 24@2x.png"
+import axios from 'axios';
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -9,11 +10,19 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const test = ()=>{
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
-    console.log(password);
+  const signUpHandler = async()=>{
+    const bodyObj = {
+      firstname: firstName,
+      lastname: lastName,
+      email: email,
+      password: password
+    }
+    try {
+      const response = await axios.post('http://localhost:3000/user/signup', bodyObj)
+      console.log(response);
+    } catch (error) {
+      console.error(error)
+    }
   }
   return (
     
@@ -32,7 +41,7 @@ function Signup() {
         <Input placeholder="Last Name" classname="w-1/2" onchange={(e)=>{setLastName(e)}}/>
         <Input placeholder="Email" onchange={(e)=>{setEmail(e)}}/>
         <Input placeholder="Password"  type="password" onchange={(e)=>{setPassword(e)}}/>
-        <Buttons title="Sign up" onclick={test} />
+        <Buttons title="Sign up" onclick={signUpHandler} />
         <div className='text-center text-grayText'>Already have a account?</div>
         <Buttons title="Login" />
       </div>
