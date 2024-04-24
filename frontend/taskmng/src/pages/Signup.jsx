@@ -19,7 +19,7 @@ function Signup() {
     }
     try {
       const response = await axios.post('http://localhost:3000/user/signup', bodyObj)
-      console.log(response);
+      console.log(response.data);
     } catch (error) {
       console.error(error)
     }
@@ -37,8 +37,8 @@ function Signup() {
         <div className='text-grayText my-1'>
           Welcome!
         </div>
-        <Input placeholder="First Name" classname="w-1/2" onchange={(e)=>{setFirstName(e)}}/>
-        <Input placeholder="Last Name" classname="w-1/2" onchange={(e)=>{setLastName(e)}}/>
+        <Input placeholder="First Name"  onchange={(e)=>{setFirstName(e)}}/>
+        <Input placeholder="Last Name" onchange={(e)=>{setLastName(e)}}/>
         <Input placeholder="Email" onchange={(e)=>{setEmail(e)}}/>
         <Input placeholder="Password"  type="password" onchange={(e)=>{setPassword(e)}}/>
         <Buttons title="Sign up" onclick={signUpHandler} />
