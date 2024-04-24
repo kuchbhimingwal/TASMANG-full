@@ -8,7 +8,9 @@ export default {
     extend: {},
     colors: {
       mainColor: "#2555C8",
-      white: "#ffffff"
+      white: "#ffffff",
+      black: "#000000",
+      grayText: "#939393"
     }
   },
   plugins: [],
