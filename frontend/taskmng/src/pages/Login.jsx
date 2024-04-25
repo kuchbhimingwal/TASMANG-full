@@ -57,7 +57,7 @@ function Login() {
         <div className='text-errorRed text-center'>{error}</div>
         <Buttons title="Log in" onclick={loginHandler}/>
         <div className='text-center text-grayText'>Don’t have a account?</div>
-        <Buttons title="Sign up"/>
+        <Buttons title="Sign up" onclick={()=>{navigate("/signup")}} />
       </div>
       <div className='col-span-1 bg-mainColor hidden md:block'>
         <div className='p-20'>

@@ -29,7 +29,7 @@ function Signup() {
       console.log(response.data.token);
       localStorage.setItem('Token',response.data.token);
       dispatch(loggeed());
-      navigate("/")
+      navigate("/login")
     } catch (error) {
       console.error(error.response.data.msg)
       setError(error.response.data.msg)
@@ -63,7 +63,7 @@ function Signup() {
         <div className='text-errorRed text-center'>{error}</div>
         <Buttons title="Sign up" onclick={signUpHandler} />
         <div className='text-center text-grayText'>Already have a account?</div>
-        <Buttons title="Login" />
+        <Buttons title="Login" onclick={()=>{navigate("/login")}}/>
       </div>
       <div className='col-span-1 bg-mainColor hidden md:block'>
         <div className='p-20'>

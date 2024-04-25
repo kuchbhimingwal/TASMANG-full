@@ -10,7 +10,6 @@ const navigate = useNavigate();
 useEffect(()=>{
   if(!isLoogedIn) navigate("/login");
 },[])
-console.log(isLoogedIn);
   return (
     <div>
       <button onClick={()=>{dispatch(loggeed())}}>click</button>
