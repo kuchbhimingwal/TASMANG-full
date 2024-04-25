@@ -10,7 +10,8 @@ export default {
       mainColor: "#2555C8",
       white: "#ffffff",
       black: "#000000",
-      grayText: "#939393"
+      grayText: "#939393",
+      errorRed: "#FF1919"
     }
   },
   plugins: [],

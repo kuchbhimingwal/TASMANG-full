@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Input({
+  value,
   onchange,
   classname,
   placeholder,
@@ -13,7 +14,7 @@ const changehandler = (e)=>{
 }
   return (
     <>
-      <input type={type} className={`border border-gray-400 text-gray-400 w-full p-2 border-grayText rounded-md my-2 ${classname}`} placeholder={placeholder} onChange={changehandler}/>
+      <input type={type} className={`border border-gray-400 text-gray-400 w-full p-2 border-grayText rounded-md my-2 ${classname}`} placeholder={placeholder} onChange={changehandler} value={value}/>
     </>
   )
 }
