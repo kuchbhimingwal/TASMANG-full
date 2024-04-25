@@ -4,7 +4,7 @@ import Input from './Input'
 import { Link } from 'react-router-dom'
 function Header() {
   return (
-    <div className='w-full flex justify-between mx-10'>
+    <div className='w-full flex justify-between px-10'>
       <div  className='w-1/12 h-auto'>
         <img src={logo} alt="logo" className='mt-4'/>
       </div>

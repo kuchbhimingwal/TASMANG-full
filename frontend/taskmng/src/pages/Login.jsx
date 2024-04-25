@@ -11,8 +11,8 @@ function Login() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state)=> state.loogedIn.value);
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("shuqedq@gmail.com");
+  const [password, setPassword] = useState("123456");
   const [error, setError] = useState("");
   const loginHandler = async()=>{
     localStorage.clear();
