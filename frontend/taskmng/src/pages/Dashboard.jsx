@@ -1,23 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {loggeed, out} from "../Store/slices/userLoggedIn"
 import { useNavigate } from 'react-router-dom';
-import SideNavBar from '../components/SideNavBar';
+import axios from 'axios';
+import ProjectCards from '../components/ProjectCards';
+
 function Dashboard() {
 const isLoogedIn = useSelector((state)=> state.loogedIn.value)
 const dispatch = useDispatch();
 const navigate = useNavigate();
+const [projects,setPorjects] = useState([]);
 
+useEffect(()=>{
+  const fethData = async()=>{
+    const token = "Bearer" + " " + localStorage.getItem("Token");
+    const axiosConfig = {
+      headers: {
+        Authorization: token
+      }
+    }
+    try {
+      const response = await axios.get('http://localhost:3000/user/projects', axiosConfig);
+      setPorjects(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  fethData();
+},[])
 useEffect(()=>{
   if(!isLoogedIn) navigate("/login");
 },[])
   return (
-    <div className='mx-10 grid grid-cols-6'>
-      <div className='col-span-1 mt-20'>
-        <SideNavBar />
-      </div>
-      <div className='col-span-5 bg-grayText'>
-
+    <div className=''>
+      <div className='ml-5'>Dashboard</div>
+      <div className='bg-dashBoardbg rounded-md h-fit'>
+        <div className='p-5 font-bold text-lg'>All Projects</div>
+        <ProjectCards posts={projects}/>
       </div>
     </div>
   )

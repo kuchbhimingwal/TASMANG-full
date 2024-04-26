@@ -11,7 +11,8 @@ export default {
       white: "#ffffff",
       black: "#000000",
       grayText: "#939393",
-      errorRed: "#FF1919"
+      errorRed: "#FF1919",
+      dashBoardbg: "#D5DDFF"
     }
   },
   plugins: [],

@@ -4,8 +4,8 @@ import NavList from './NavList'
 function SideNavBar() {
   return (
     <div className='px-2 opacity-80'>
-      {navItems.map((item)=>(
-        <NavList svg={item.icon} title={item.title} />
+      {navItems.map((item,i)=>(
+        <NavList key={i} svg={item.icon} title={item.title} />
       ))}
     </div>
   )
