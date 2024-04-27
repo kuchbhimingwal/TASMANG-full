@@ -33,14 +33,16 @@ function Project() {
       <div className='bg-dashBoardbg rounded-md h-fit'>
         <div className='p-5 font-bold text-lg'>All Projects</div>
         
-        <div className='grid grid-cols-3 '>
+        <div className='flex justify-center'>
+            <div className='lg:w-1/2 md:w-2/3 w-full bg-white m-5 rounded-md shadow-md'> 
           {tasksInProject.map((task) => (
-            <div key={task._id} className='col-span-1 bg-white m-5 rounded-md shadow-md'> 
+              <div key={task._id} className='border-b border-grayText'>
               <h3 className='text-left m-4 font-bold'>{task.taskName}</h3>
-              <p className='w-auto bg-opacity-40 bg-pink m-4 rounded-md p-2 text-sm'>{}</p>
+              <p className='w-auto bg-opacity-40 bg-pink m-4 rounded-md p-2 text-sm'>Assign to: {task.assigTo}</p>
               <p className='w-auto bg-opacity-40 bg-yellow m-4 rounded-md p-2 text-sm'>Create on: {task.completionDate}</p>
-            </div>
+              </div>
           ))}
+          </div>
         </div>
       </div>
     </div>

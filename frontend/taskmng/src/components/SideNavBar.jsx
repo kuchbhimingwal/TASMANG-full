@@ -3,7 +3,7 @@ import {navItems} from '../assets/navItems'
 import NavList from './NavList'
 function SideNavBar() {
   return (
-    <div className='px-2 opacity-80'>
+    <div className='xl:px-2 lg:px-1 opacity-80'>
       {navItems.map((item,i)=>(
         <NavList key={i} svg={item.icon} title={item.title} />
       ))}

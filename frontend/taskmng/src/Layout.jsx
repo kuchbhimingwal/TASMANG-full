@@ -11,10 +11,10 @@ const Layout = () => {
       <div className="flex-grow">
         <Header />
         <div className='mx-10 grid grid-cols-6'>
-          <div className='col-span-1 mt-20'>
+          <div className='hidden md:block col-span-1 mt-20'>
             <SideNavBar />
           </div>
-          <div className='col-span-5'>
+          <div className='md:col-span-5 col-span-6'>
             <div className='text-2xl font-bold pl-5 pt-3'>Task Management</div>
               <Outlet />
           </div>

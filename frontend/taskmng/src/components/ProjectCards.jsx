@@ -8,7 +8,7 @@ function ProjectCards({posts}) {
     console.log(projectId);
   }
   return (
-    <div className='grid grid-cols-3 '>
+    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
       {posts.map((post) => { 
         const date = new Date(post.createdAt);
         const formattedDate = date.toDateString();
