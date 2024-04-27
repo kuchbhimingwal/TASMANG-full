@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function Project() {
   const isLoogedIn = useSelector((state)=> state.loogedIn.value)
+  const users = useSelector((state)=> state.users.value)
   const navigate = useNavigate();
   const location = useLocation();
   const projectId = location.state.projectId;
@@ -35,13 +36,16 @@ function Project() {
         
         <div className='flex justify-center'>
             <div className='lg:w-1/2 md:w-2/3 w-full bg-white m-5 rounded-md shadow-md'> 
-          {tasksInProject.map((task) => (
+          {tasksInProject.map((task) => {
+              const date = new Date(task.completionDate);
+              const formattedDate = date.toDateString();
+            return(
               <div key={task._id} className='border-b border-grayText'>
               <h3 className='text-left m-4 font-bold'>{task.taskName}</h3>
-              <p className='w-auto bg-opacity-40 bg-pink m-4 rounded-md p-2 text-sm'>Assign to: {task.assigTo}</p>
-              <p className='w-auto bg-opacity-40 bg-yellow m-4 rounded-md p-2 text-sm'>Create on: {task.completionDate}</p>
+              <p className='w-auto bg-opacity-40 bg-pink m-4 rounded-md p-2 text-sm'>Assign to: {users.find(user => user._id == task.assigTo).firstname}</p>
+              <p className='w-auto bg-opacity-40 bg-yellow m-4 rounded-md p-2 text-sm'>Create on: {formattedDate}</p>
               </div>
-          ))}
+          )})}
           </div>
         </div>
       </div>
