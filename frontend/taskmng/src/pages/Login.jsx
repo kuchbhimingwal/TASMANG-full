@@ -4,6 +4,7 @@ import Buttons from '../components/Buttons'
 import LoginPageImg from "../assets/Group 23@2x.png"
 import axios from 'axios';
 import { loggeed } from '../Store/slices/userLoggedIn';
+import { addUsers } from '../Store/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -27,8 +28,22 @@ function Login() {
       const response = await axios.get('http://localhost:3000/user/signin', axiosConfig)
       // console.log(response.data)
       localStorage.setItem('Token',response.data.token);
-      dispatch(loggeed());
-      navigate("/")
+      const token = "Bearer" + " " + response.data.token;
+      const axiosConfig2 = {
+        headers: {
+          Authorization: token
+        }
+      }
+      try {
+        const user = await axios.get('http://localhost:3000/user/getUsers', axiosConfig2)
+        console.log(user.data);
+        dispatch(loggeed());
+        dispatch(addUsers(user.data));
+        navigate("/")
+      } catch (error) {
+        console.error(error)
+      }
+      // navigate("/")
     } catch (error) {
       console.error(error)
       setError(error.response.data.mssg)

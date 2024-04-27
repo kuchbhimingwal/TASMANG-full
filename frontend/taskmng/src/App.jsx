@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Project from './pages/Project';
+import Tasks from './pages/Tasks';
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="project" element={<Project />} />
+          <Route path="tasks" element={<Tasks />} />
         </Route>
       </Routes>
     </BrowserRouter>
