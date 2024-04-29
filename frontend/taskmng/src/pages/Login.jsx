@@ -5,6 +5,7 @@ import LoginPageImg from "../assets/Group 23@2x.png"
 import axios from 'axios';
 import { loggeed } from '../Store/slices/userLoggedIn';
 import { addUsers } from '../Store/slices/users';
+import { addUser } from '../Store/slices/userSclice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -35,10 +36,12 @@ function Login() {
         }
       }
       try {
-        const user = await axios.get('http://localhost:3000/user/getUsers', axiosConfig2)
-        // console.log(user.data);
+        const users = await axios.get('http://localhost:3000/user/getUsers', axiosConfig2)
+        const user = await axios.get('http://localhost:3000/user/getuser', axiosConfig2)
+        console.log(user.data);
         dispatch(loggeed());
-        dispatch(addUsers(user.data));
+        dispatch(addUsers(users.data));
+        dispatch(addUser(user.data));
         navigate("/")
       } catch (error) {
         console.error(error)

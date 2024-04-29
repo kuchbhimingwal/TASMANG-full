@@ -2,7 +2,9 @@ import React from 'react'
 import logo from '../assets/TASMANG@2x.png'
 import Input from './Input'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 function Header() {
+  const user = useSelector((state)=> state.user.value)
   return (
     <div className='w-full flex justify-between px-10 mb-5'>
       <div  className='w-24 h-auto'>
@@ -11,7 +13,7 @@ function Header() {
       <div className="flex">
         <Input classname="h-8 mr-10 hidden sm:block" placeholder="Search"/>
         <Link to="#" className='text-gray-400 mt-4'>
-          name
+          {user.firstname}
         </Link>
       </div>
     </div>

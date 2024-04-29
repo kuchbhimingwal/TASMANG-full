@@ -14,7 +14,9 @@ export default {
       errorRed: "#FF1919",
       dashBoardbg: "#D5DDFF",
       pink: "#F634FF",
-      yellow: "#FFFE35"
+      yellow: "#FFFE35",
+      green: "#00AC07",
+      yellow: "#FFC014"
     }
   },
   plugins: [],

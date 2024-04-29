@@ -27,8 +27,8 @@ function Signup() {
     try {
       const response = await axios.post('http://localhost:3000/user/signup', bodyObj)
       console.log(response.data.token);
-      localStorage.setItem('Token',response.data.token);
-      dispatch(loggeed());
+      // localStorage.setItem('Token',response.data.token);
+      // dispatch(loggeed());
       navigate("/login")
     } catch (error) {
       console.error(error.response.data.msg)

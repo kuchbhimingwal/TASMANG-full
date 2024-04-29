@@ -90,7 +90,7 @@ userRouter.get('/projectbyid',userAuth, async(req, res)=>{
   res.status(200).send(projectById);
 });
 userRouter.get('/getuser',userAuth, async(req, res)=>{
-  const userId = req.query.userId;
+  const userId = req.userId;
   const user = await User.findById(userId);
 
   if(!user) return res.status(411).json({msg: "invalid id"});

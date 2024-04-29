@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {loggeed, out} from "../Store/slices/userLoggedIn"
+import { addProject } from '../Store/slices/projectSlice';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ProjectCards from '../components/ProjectCards';
@@ -22,6 +23,7 @@ useEffect(()=>{
     try {
       const response = await axios.get('http://localhost:3000/user/projects', axiosConfig);
       setPorjects(response.data);
+      dispatch(addProject(response.data));
     } catch (error) {
       console.error(error);
     }
