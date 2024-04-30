@@ -24,6 +24,9 @@ const taskSchema = new Schema({
   priority:{
     type: String,
   },
+  discription:{
+    type: String,
+  },
   completionDate: {
     type: Date,
     require: true

@@ -36,7 +36,7 @@ adminRouter.post("/project",adminAuth, async(req, res)=>{
   res.status(200).json({msg: "project created"});
 })
 
-adminRouter.post("/task", async(req, res)=>{
+adminRouter.post("/task",adminAuth, async(req, res)=>{
   const projectId = req.headers.projectid;
   const assignTo = req.headers.assignto;
   if(!projectId || !assignTo) return res.status(411).json({msg: "projectId does not match"})
@@ -47,6 +47,7 @@ adminRouter.post("/task", async(req, res)=>{
     taskName: req.body.taskName,
     status: req.body.status,
     priority: req.body.priority,
+    discription: req.body.discription,
     completionDate: req.body.completionDate
   })
 

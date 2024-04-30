@@ -22,8 +22,8 @@ function TasksTable({
           <div className='col-span-1'>{task.taskName}</div>
           <div className='col-span-1'>{(task.status == true ? "completed": "Not completed")}</div>
           {(task.priority == "High" ) ? <div className='bg-errorRed rounded-md text-center w-1/2' >{task.priority}</div> : null}
-          {(task.priority == "med" ) ? <div className='bg-yellow rounded-md text-center w-1/2'>{task.priority}</div> : null}
-          {(task.priority == "low" ) ? <div className='bg-green rounded-md text-center w-1/2'>{task.priority}</div> : null}
+          {(task.priority == "Med" ) ? <div className='bg-yellow rounded-md text-center w-1/2'>{task.priority}</div> : null}
+          {(task.priority == "Low" ) ? <div className='bg-green rounded-md text-center w-1/2'>{task.priority}</div> : null}
           {/* <div className='col-span-1'>{task.priority}</div> */}
           <div className='col-span-1'>{formattedDate}</div>
         </div>

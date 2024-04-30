@@ -16,6 +16,7 @@ function ProfileEdit() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
   const clickHandler = async()=>{
     let updateObj = {
     }
@@ -33,7 +34,6 @@ function ProfileEdit() {
 
     try {
       const response = await axios.post('http://localhost:3000/user/userUpdate',updateObj,axiosConfig);
-      console.log(response);
       try {
         const users = await axios.get('http://localhost:3000/user/getUsers', axiosConfig)
         const user = await axios.get('http://localhost:3000/user/getuser', axiosConfig)
@@ -41,10 +41,15 @@ function ProfileEdit() {
         dispatch(addUser(user.data));
         navigate("/profile")
       } catch (error) {
-        console.error(error)
+        console.log(error)
       }
     } catch (error) {
-      console.error(error)
+      console.error(error.response.data.msg)
+      setError(error.response.data.msg)
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
     }
   }
   useEffect(()=>{
@@ -57,13 +62,15 @@ function ProfileEdit() {
         
         <div className='flex justify-center pb-10'>
             <div className='lg:w-1/2 md:w-2/3 w-full bg-white m-5 rounded-md shadow-md'> 
-              <div className='border-b border-grayText'>
-                <h3 className='text-left m-4 font-bold'>Edit Profile</h3>
+              <div className='border-b border-grayText p-5'>
+                <h3 className='text-left mb-2 font-bold'>Edit Profile</h3>
+                <p className='text-grayText text-sm'>Enter any input field to update the info</p>
                 <Input placeholder="First Name"  onchange={(e)=>{setFirstName(e)}} value={firstName}/>
                 <Input placeholder="Last Name" onchange={(e)=>{setLastName(e)}} value={lastName}/>
                 <Input placeholder="Email" onchange={(e)=>{setEmail(e)}} value={email}/>
                 <Input placeholder="Password"  type="password" onchange={(e)=>{setPassword(e)}} value={password}/>
-                <div className='px-20 mb-4'>
+                <div className='text-errorRed text-center'>{error}</div>
+                <div className='px-20 '>
                 <Buttons title="Edit" onclick={clickHandler} className="h-10 p-0"/>
                 </div>
               </div>
