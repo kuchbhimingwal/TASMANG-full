@@ -76,6 +76,7 @@ function Login() {
         <Buttons title="Log in" onclick={loginHandler}/>
         <div className='text-center text-grayText'>Don’t have a account?</div>
         <Buttons title="Sign up" onclick={()=>{navigate("/signup")}} />
+        <div className='text-center text-grayText' onClick={()=>{navigate("/adminlogin")}}>Admin?</div>
       </div>
       <div className='col-span-1 bg-mainColor hidden md:block'>
         <div className='p-20'>

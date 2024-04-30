@@ -19,6 +19,14 @@ adminRouter.get("/signin", async(req,res)=>{
   res.status(200).json({msg :"loggen in", token: token});
 })
 
+adminRouter.get('/getadmin',adminAuth, async(req, res)=>{
+  const userId = req.userId;
+  const user = await Admin.findById(userId);
+
+  if(!user) return res.status(411).json({msg: "invalid id"});
+
+  res.status(200).send(user)
+});
 adminRouter.post("/project",adminAuth, async(req, res)=>{
   
   const { success } = projectStructure.safeParse(req.body);

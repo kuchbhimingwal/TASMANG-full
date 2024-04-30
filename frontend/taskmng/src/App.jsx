@@ -9,6 +9,8 @@ import Tasks from './pages/Tasks';
 import MyTasks from './pages/MyTasks';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard'
 function App() {
   return (
     <>
@@ -23,6 +25,8 @@ function App() {
           <Route path="mytasks" element={<MyTasks />} />
           <Route path="profile" element={<Profile />} />
           <Route path="profileedit" element={<ProfileEdit />} />
+          <Route path="adminlogin" element={<AdminLogin />} />
+          <Route path="admindashboard" element={<AdminDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
