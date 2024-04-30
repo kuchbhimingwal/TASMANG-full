@@ -32,6 +32,22 @@ userRouter.post("/signup", async(req,res)=>{
   res.status(200).json({msg :"user created", token: token});
 })
 
+const userUpdateSchema = z.object({
+  firstname: z.string().optional(),
+  lastname: z.string().optional(),
+  email: z.string().email().optional(),
+  password: z.string().optional(),
+})
+userRouter.post('/userUpdate',userAuth, async(req,res)=>{
+  const filter = { _id: req.userId };
+  const update = req.body;
+  const { success } = userUpdateSchema.safeParse(req.body);
+  if(!success) return res.status(411).json({msg: "not a valid input"})
+
+  let doc = await User.findOneAndUpdate(filter, update);
+  if(!doc) return res.status(411).json({msg: "issue with the DB"})
+  res.status(200).json({msg :"user Updated"});
+})
 userRouter.get("/signin", async(req,res)=>{
   const find = await User.findOne({email: req.headers.email, password: req.headers.password})
   if(!find) return res.status(411).json({mssg : "wrong credentials"})
@@ -72,7 +88,7 @@ userRouter.get("/tasks",userAuth, async(req,res)=>{
   res.status(200).send(tasks)
 })
 userRouter.get('/tasksInUser', userAuth, async(req, res)=>{
-  const userId = req.query.userId;
+  const userId = req.userId;
 
   const tasks = await Tasks.find({assigTo: userId});
 

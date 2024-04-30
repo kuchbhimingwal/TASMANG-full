@@ -13,6 +13,7 @@ const navigate = useNavigate();
 const [projects,setPorjects] = useState([]);
 
 useEffect(()=>{
+  if(!isLoogedIn) navigate("/login");
   const fethData = async()=>{
     const token = "Bearer" + " " + localStorage.getItem("Token");
     const axiosConfig = {
@@ -29,9 +30,6 @@ useEffect(()=>{
     }
   }
   fethData();
-},[])
-useEffect(()=>{
-  if(!isLoogedIn) navigate("/login");
 },[])
   return (
     <div className=''>

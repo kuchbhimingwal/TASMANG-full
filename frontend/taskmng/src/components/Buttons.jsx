@@ -2,7 +2,7 @@ import React from 'react'
 
 function Buttons({
   onclick,
-  className="bg-mainColor text-center p-3 w-full text-white rounded-md my-2",
+  className,
   title
 }) {
   const clickHandler = ()=>{
@@ -10,7 +10,7 @@ function Buttons({
   }
   return (
     <>
-      <button className={className} onClick={clickHandler}>{title}</button>
+      <button className={`bg-mainColor text-center p-3 w-full text-white rounded-md my-2 ${className}`} onClick={clickHandler}>{title}</button>
     </>
   )
 }

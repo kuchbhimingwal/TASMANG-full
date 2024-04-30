@@ -11,8 +11,9 @@ function Header() {
         <img src={logo} alt="logo" className='mt-4'/>
       </div>
       <div className="flex">
-        <Input classname="h-8 mr-10 hidden sm:block" placeholder="Search"/>
-        <Link to="#" className='text-gray-400 mt-4'>
+        {/* <Input classname="h-8 mr-10 hidden sm:block" placeholder="Search"/> */}
+        <Link to="/profile" className='text-gray-400 mt-4 flex'>
+          <div className='rounded-full bg-mainColor text-white text-center w-6 mx-2'>{user.firstname.charAt(0).toUpperCase()}</div>
           {user.firstname}
         </Link>
       </div>

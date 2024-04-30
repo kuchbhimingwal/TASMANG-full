@@ -38,7 +38,7 @@ function Login() {
       try {
         const users = await axios.get('http://localhost:3000/user/getUsers', axiosConfig2)
         const user = await axios.get('http://localhost:3000/user/getuser', axiosConfig2)
-        console.log(user.data);
+        // console.log(user.data);
         dispatch(loggeed());
         dispatch(addUsers(users.data));
         dispatch(addUser(user.data));
