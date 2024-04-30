@@ -1,20 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../components/Input'
 import Buttons from '../components/Buttons';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { loggeed } from '../Store/slices/userLoggedIn';
+import { addUser } from '../Store/slices/userSclice';
+import { addUsers } from '../Store/slices/users';
+
 function ProfileEdit() {
+  const dispatch = useDispatch();
+  const isLoogedIn = useSelector((state)=> state.loogedIn.value);
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const clickHandler = ()=>{
-    const updateObj = {
-      firstname: firstName,
-      lastname: lastName,
-      email: email,
-      password: password
+  const clickHandler = async()=>{
+    let updateObj = {
     }
-    console.log(updateObj);
+    if(firstName != "") updateObj.firstname = firstName;
+    if(lastName != "") updateObj.lastname = lastName;
+    if(email != "") updateObj.email = email;
+    if(password != "") updateObj.password = password;
+    
+    const token = "Bearer" + " " + localStorage.getItem("Token");
+    const axiosConfig = {
+      headers: {
+        Authorization: token
+      }
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3000/user/userUpdate',updateObj,axiosConfig);
+      console.log(response);
+      try {
+        const users = await axios.get('http://localhost:3000/user/getUsers', axiosConfig)
+        const user = await axios.get('http://localhost:3000/user/getuser', axiosConfig)
+        dispatch(addUsers(users.data));
+        dispatch(addUser(user.data));
+        navigate("/profile")
+      } catch (error) {
+        console.error(error)
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
+  useEffect(()=>{
+  if(!isLoogedIn) navigate("/login");
+  },[])
   return (
     <div>
       <div className='bg-dashBoardbg rounded-md h-fit mt-5'>
