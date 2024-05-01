@@ -41,6 +41,7 @@ function MyTasks() {
                 <h3 className='text-left m-4 font-bold'>{task.taskName}</h3>
                 <p className='w-auto bg-opacity-40 bg-dashBoardbg m-4 rounded-md p-2 text-sm'>Priority: {task.priority}</p>
                 <p className='w-auto bg-opacity-40 bg-dashBoardbg m-4 rounded-md p-2 text-sm'>Deadline: {formattedDate}</p>
+                <p className='w-auto bg-opacity-40 bg-dashBoardbg m-4 rounded-md p-2 text-sm'>Deatils: {task.discription}</p>
                 {task.status == true ? <p className='w-auto bg-opacity-40 bg-green m-4 rounded-md p-2 text-sm'>Completed</p> : <p className='w-auto bg-opacity-40 bg-errorRed m-4 rounded-md p-2 text-sm'>Not Completed</p>}
               </div>
           )})}

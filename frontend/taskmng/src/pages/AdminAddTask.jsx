@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../components/Input';
 import Buttons from '../components/Buttons';
+import axios from 'axios';
 function AdminAddTask() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state)=> state.adminLoggedin.value);
@@ -22,6 +23,7 @@ function AdminAddTask() {
   const navigate = useNavigate();
 
   const clickHandler = async()=>{
+    const token = "Bearer" + " " + localStorage.getItem("adminToken");
     const bodyObject = {
       taskName : taskname,
       status: false,
@@ -29,9 +31,36 @@ function AdminAddTask() {
       discription: discription,
       completionDate: completiondate
     }
-    console.log(bodyObject);
-    console.log(user);
-    console.log(project);
+    const userId = users.find(e=> e.firstname == user)._id
+    const projectId = projects.find(e=> e.projectName == project)._id
+
+    const axiosConfig = {
+      headers: {
+        Authorization: token,
+        projectid: projectId,
+        assignto: userId
+      }
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3000/admin/task', bodyObject, axiosConfig)
+      // console.log(response);
+      setPri(priorities[0]);
+      setUser(users[0].firstname);
+      setProject(projects[0].projectName);
+      setTaskname("");
+      setDiscription("");
+      setCompletiondate("");
+      setSuccess(response.data.msg);
+    } catch (error) {
+      setPri(priorities[0]);
+      setUser(users[0].firstname);
+      setProject(projects[0].projectName);
+      setTaskname("");
+      setDiscription("");
+      setCompletiondate("");
+      setError(error.response.data.msg);
+    }
   }
   useEffect(()=>{
     if(!isLogged) navigate('/adminlogin');

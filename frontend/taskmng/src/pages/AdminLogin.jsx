@@ -24,7 +24,7 @@ function AdminLogin() {
     }
     try {
       const response = await axios.get('http://localhost:3000/admin/signin',axiosConfig);
-      console.log(response.data.token);
+      // console.log(response.data.token);
       localStorage.setItem('adminToken',response.data.token);
       const token = "Bearer" + " " + response.data.token;
       const axiosConfig2 = {
