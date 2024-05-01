@@ -7,10 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { addUser } from '../Store/slices/userSclice';
 import { addUsers } from '../Store/slices/users';
 import { addProject } from '../Store/slices/projectSlice';
-
+import { loged } from '../Store/slices/adminLoggedin';
 function AdminLogin() {
   const dispatch = useDispatch();
-  const isLogged = useSelector((state)=> state.loogedIn.value);
   const navigate = useNavigate();
   const [email, setEmail] = useState("mingishubham@gmail.com");
   const [password, setPassword] = useState("123456");
@@ -38,6 +37,7 @@ function AdminLogin() {
         const user = await axios.get('http://localhost:3000/admin/getadmin', axiosConfig2);
         const response = await axios.get('http://localhost:3000/user/projects', axiosConfig2);
         // console.log(user.data);
+        dispatch(loged());
         dispatch(addUsers(users.data));
         dispatch(addUser(user.data));
         dispatch(addProject(response.data));
@@ -49,9 +49,6 @@ function AdminLogin() {
       setError(error.response.data.mssg)
     }
   }
-  useEffect(()=>{
-    if(isLogged) navigate('/')
-  },[])
   return (
     <div className='flex justify-center items-center h-screen sm:px-20 sm:py-24 px-10 py-14'>
       <div className='w-1/2'>
