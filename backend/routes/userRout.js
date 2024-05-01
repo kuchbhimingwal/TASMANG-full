@@ -87,6 +87,14 @@ userRouter.get("/tasks",userAuth, async(req,res)=>{
   if(!tasks) return res.status(411).json({msg: "error looking for tasks"});
   res.status(200).send(tasks)
 })
+userRouter.post("/taskcomplete", userAuth, async(req,res)=>{
+  const filter = { _id: req.body.taskId };
+  const update = { status: true };
+
+  let doc = await Tasks.findOneAndUpdate(filter, update);
+  if(!doc) return res.status(411).json({msg: "issue with the DB"})
+  res.status(200).json({msg :"Task Completed"});
+})
 userRouter.get('/tasksInUser', userAuth, async(req, res)=>{
   const userId = req.userId;
 

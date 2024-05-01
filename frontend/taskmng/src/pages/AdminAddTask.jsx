@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../components/Input';
 import Buttons from '../components/Buttons';
+import { addUser } from '../Store/slices/userSclice';
+import { addUsers } from '../Store/slices/users';
+import { adminOut } from '../Store/slices/adminLoggedin';
+import { addProject } from '../Store/slices/projectSlice';
 import axios from 'axios';
 function AdminAddTask() {
   const dispatch = useDispatch();
@@ -21,7 +25,13 @@ function AdminAddTask() {
   // console.log(users);
   // console.log(projects);
   const navigate = useNavigate();
-
+  const logoutHandler = ()=>{
+    dispatch(adminOut());
+    dispatch(addUsers([]));
+    dispatch(addUser({}));
+    dispatch(addProject([]));
+    navigate("/adminlogin");
+  }
   const clickHandler = async()=>{
     const token = "Bearer" + " " + localStorage.getItem("adminToken");
     const bodyObject = {
@@ -102,6 +112,7 @@ function AdminAddTask() {
                 <div className='text-green text-center'>{success}</div>
                 <div className='px-20 '>
                 <Buttons title="Add Task" onclick={clickHandler} className="h-10 p-0"/>
+                <Buttons title="Log Out" onclick={logoutHandler}/>
                 </div>
             </div>
           </div>

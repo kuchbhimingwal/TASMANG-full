@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProject } from '../Store/slices/projectSlice';
 import { useNavigate } from "react-router-dom";
+import { addUser } from '../Store/slices/userSclice';
+import { addUsers } from '../Store/slices/users';
+import { adminOut } from '../Store/slices/adminLoggedin';
 function AdminDashboard() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state)=> state.adminLoggedin.value);
@@ -13,7 +16,14 @@ function AdminDashboard() {
   const [discription, setDiscription] = useState("")
   const [completionDate, setCompletionDate] = useState("")
   const [error , setError] = useState("");
-  const [success, setSuccess] = useState("")
+  const [success, setSuccess] = useState("");
+  const logoutHandler = ()=>{
+    dispatch(adminOut());
+    dispatch(addUsers([]));
+    dispatch(addUser({}));
+    dispatch(addProject([]));
+    navigate("/adminlogin");
+  }
   const clickHandler = async()=>{
     const token = "Bearer" + " " + localStorage.getItem("adminToken");
     const bodyObject = {
@@ -70,6 +80,7 @@ function AdminDashboard() {
                 <div className='text-green text-center'>{success}</div>
                 <div className='px-20 '>
                 <Buttons title="Add projects" onclick={clickHandler} className="h-10 p-0"/>
+                <Buttons title="Log Out" onclick={logoutHandler}/>
                 </div>
             </div>
           </div>

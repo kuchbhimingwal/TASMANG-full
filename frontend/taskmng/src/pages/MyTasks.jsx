@@ -2,11 +2,31 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import Buttons from '../components/Buttons';
 function MyTasks() {
   const isLoogedIn = useSelector((state)=> state.loogedIn.value);
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([])
+
+  const completedHandler= async(id)=>{
+    const token = "Bearer" + " " + localStorage.getItem("Token");
+    const axiosConfig = {
+      headers: {
+        Authorization: token
+      }
+    }
+    const bodyConfig = {
+      taskId: id
+    }
+    console.log(bodyConfig);
+    try {
+      const response = await axios.post('http://localhost:3000/user/taskcomplete',bodyConfig,axiosConfig);
+      setSuccess(response.data.msg);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(()=>{
     if(!isLoogedIn) navigate("/login");
     const dataFetchin=async()=>{
@@ -24,7 +44,7 @@ function MyTasks() {
       }
     }
     dataFetchin();
-  },[])
+  },[success])
   return (
     <div>
       <div className='ml-5'>My Tasks</div>
@@ -42,7 +62,14 @@ function MyTasks() {
                 <p className='w-auto bg-opacity-40 bg-dashBoardbg m-4 rounded-md p-2 text-sm'>Priority: {task.priority}</p>
                 <p className='w-auto bg-opacity-40 bg-dashBoardbg m-4 rounded-md p-2 text-sm'>Deadline: {formattedDate}</p>
                 <p className='w-auto bg-opacity-40 bg-dashBoardbg m-4 rounded-md p-2 text-sm'>Deatils: {task.discription}</p>
-                {task.status == true ? <p className='w-auto bg-opacity-40 bg-green m-4 rounded-md p-2 text-sm'>Completed</p> : <p className='w-auto bg-opacity-40 bg-errorRed m-4 rounded-md p-2 text-sm'>Not Completed</p>}
+                {task.status == true ?
+                  <p className='w-auto bg-opacity-40 bg-green m-4 rounded-md p-2 text-sm'>Completed</p> 
+                : 
+                  <div className="m-4">
+                    <p className='w-auto bg-opacity-40 bg-errorRed rounded-md p-2 text-sm'>Not Completed</p>
+                    <Buttons title="Mark Completed" onclick={()=>{completedHandler(task._id)}}/>
+                  </div>
+                }
               </div>
           )})}
           </div>

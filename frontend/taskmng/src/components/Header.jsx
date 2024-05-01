@@ -1,13 +1,14 @@
 import React from 'react'
 import logo from '../assets/TASMANG@2x.png'
 import Input from './Input'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 function Header() {
+  const navigate = useNavigate()
   const user = useSelector((state)=> state.user.value)
   return (
     <div className='w-full flex justify-between px-10 mb-5'>
-      <div  className='w-24 h-auto'>
+      <div  className='w-24 h-auto cursor-pointer' onClick={()=>{navigate("/")}}>
         <img src={logo} alt="logo" className='mt-4'/>
       </div>
       <div className="flex">
