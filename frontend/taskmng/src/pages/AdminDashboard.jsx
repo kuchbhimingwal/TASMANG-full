@@ -64,7 +64,7 @@ function AdminDashboard() {
                 <h3 className='text-left mb-2 font-bold'>Add a Project</h3>
                 <p className='text-grayText text-sm'>Enter the details of the project</p>
                 <Input placeholder="Project Name"  onchange={(e)=>{setProjectName(e)}} value={projectName}/>
-                <Input placeholder="Discription" onchange={(e)=>{setDiscription(e)}} value={discription}/>
+                <Input classname="h-20" placeholder="Discription" onchange={(e)=>{setDiscription(e)}} value={discription}/>
                 <Input placeholder="Date" type="date" onchange={(e)=>{setCompletionDate(e)}} value={completionDate}/>
                 <div className='text-errorRed text-center'>{error}</div>
                 <div className='text-green text-center'>{success}</div>
