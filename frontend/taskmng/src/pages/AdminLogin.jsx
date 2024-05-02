@@ -23,7 +23,7 @@ function AdminLogin() {
       }
     }
     try {
-      const response = await axios.get('http://tasmang-backend.kuchbhimingwal.com/admin/signin',axiosConfig);
+      const response = await axios.get('http://localhost:3001/admin/signin',axiosConfig);
       // console.log(response.data.token);
       localStorage.setItem('adminToken',response.data.token);
       const token = "Bearer" + " " + response.data.token;
@@ -33,9 +33,9 @@ function AdminLogin() {
         }
       }
       try {
-        const users = await axios.get('http://tasmang-backend.kuchbhimingwal.com/user/getUsers', axiosConfig2);
-        const user = await axios.get('http://tasmang-backend.kuchbhimingwal.com/admin/getadmin', axiosConfig2);
-        const response = await axios.get('http://tasmang-backend.kuchbhimingwal.com/user/projects', axiosConfig2);
+        const users = await axios.get('http://localhost:3001/user/getUsers', axiosConfig2);
+        const user = await axios.get('http://localhost:3001/admin/getadmin', axiosConfig2);
+        const response = await axios.get('http://localhost:3001/user/projects', axiosConfig2);
         // console.log(user.data);
         dispatch(loged());
         dispatch(addUsers(users.data));

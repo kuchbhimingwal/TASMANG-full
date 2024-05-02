@@ -37,10 +37,10 @@ function AdminDashboard() {
       }
     }
     try {
-      const response = await axios.post('http://tasmang-backend.kuchbhimingwal.com/admin/project',bodyObject,axiosConfig)
+      const response = await axios.post('http://localhost:3001/admin/project',bodyObject,axiosConfig)
       setSuccess(response.data.msg);
       try {
-        const response = await axios.get('http://tasmang-backend.kuchbhimingwal.com/user/projects', axiosConfig);
+        const response = await axios.get('http://localhost:3001/user/projects', axiosConfig);
         dispatch(addProject(response.data));
         setProjectName("");
         setDiscription("");

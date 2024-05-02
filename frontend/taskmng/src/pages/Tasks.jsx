@@ -18,7 +18,7 @@ function Tasks() {
     }
     const dataFetching = async()=>{
       try {
-        const tasks = await axios.get('http://tasmang-backend.kuchbhimingwal.com/user/tasks', axiosConfig)
+        const tasks = await axios.get('http://localhost:3001/user/tasks', axiosConfig)
         setTasks(tasks.data);
       } catch (error) {
         console.error(error)
