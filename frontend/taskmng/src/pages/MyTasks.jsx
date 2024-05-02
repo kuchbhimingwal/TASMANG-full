@@ -21,7 +21,7 @@ function MyTasks() {
     }
     console.log(bodyConfig);
     try {
-      const response = await axios.post('http://localhost:3000/user/taskcomplete',bodyConfig,axiosConfig);
+      const response = await axios.post('http://tasmang-backend.kuchbhimingwal.com/user/taskcomplete',bodyConfig,axiosConfig);
       setSuccess(response.data.msg);
     } catch (error) {
       console.log(error);
@@ -37,7 +37,7 @@ function MyTasks() {
         }
       }
       try {
-        const response = await axios.get(`http://localhost:3000/user/tasksInUser`,axiosConfig)
+        const response = await axios.get(`http://tasmang-backend.kuchbhimingwal.com/user/tasksInUser`,axiosConfig)
         setTasks(response.data);
       } catch (error) {
         console.error(error);

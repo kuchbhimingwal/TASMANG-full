@@ -22,7 +22,7 @@ useEffect(()=>{
       }
     }
     try {
-      const response = await axios.get('http://localhost:3000/user/projects', axiosConfig);
+      const response = await axios.get('http://tasmang-backend.kuchbhimingwal.com/user/projects', axiosConfig);
       setPorjects(response.data);
       dispatch(addProject(response.data));
     } catch (error) {

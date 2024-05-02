@@ -33,10 +33,10 @@ function ProfileEdit() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/user/userUpdate',updateObj,axiosConfig);
+      const response = await axios.post('http://tasmang-backend.kuchbhimingwal.com/user/userUpdate',updateObj,axiosConfig);
       try {
-        const users = await axios.get('http://localhost:3000/user/getUsers', axiosConfig)
-        const user = await axios.get('http://localhost:3000/user/getuser', axiosConfig)
+        const users = await axios.get('http://tasmang-backend.kuchbhimingwal.com/user/getUsers', axiosConfig)
+        const user = await axios.get('http://tasmang-backend.kuchbhimingwal.com/user/getuser', axiosConfig)
         dispatch(addUsers(users.data));
         dispatch(addUser(user.data));
         navigate("/profile")
