@@ -17,7 +17,7 @@ function TasksTable({
         const date = new Date(task.completionDate);
         const formattedDate = date.toDateString();
         return(
-        <div className='grid grid-cols-5 my-2' key={i}>
+        <div className='hidden sm:grid grid-cols-5 my-2' key={i}>
           <div className='col-span-1 text-xs md:text-sm ld:text-md'>{projects.find(project => task.userId == project._id).projectName}</div>
           <div className='col-span-1 text-xs md:text-sm ld:text-md'>{task.taskName}</div>
           <div className='col-span-1 text-xs md:text-sm ld:text-md'>{(task.status == true ? "completed": "Not completed")}</div>

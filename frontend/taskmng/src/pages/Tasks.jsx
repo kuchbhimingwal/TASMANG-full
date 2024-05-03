@@ -32,6 +32,7 @@ function Tasks() {
       <div className='bg-dashBoardbg rounded-md h-fit p-4'>
         <div className='p-5 font-bold text-lg'>Tasks list</div>
         <TasksTable tasks={tasks}/>
+        <div className='block sm:hidden mx-4 bg-white p-4 rounded-md text-center'>Open in Deskton to view this data</div>
       </div>
     </div>
   )

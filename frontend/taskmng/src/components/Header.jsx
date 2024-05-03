@@ -48,16 +48,11 @@ function Header() {
         </div>
       </div>
 
-      <div className={`w-full md:hidden flex items-center ${isOpen ? "block" : "hidden"}`}>
-        <div className="text-sm ">
+      <div className={`w-full px-10 md:hidden flex items-center ${isOpen ? "block" : "hidden"}`}>
+        <div className="text-sm w-full">
           {navItems.map((item,i)=>(
-        <NavList key={i} svg={item.icon} title={item.title} to={item.to} classname="pl-10 w-full"/>
+        <NavList key={i} svg={item.icon} title={item.title} to={item.to} classname="pl-10"/>
       ))}
-        </div>
-        <div>
-          <button className="inline-flex items-center bg-amber-500 border-0 py-2 px-4 text-white">
-            Click Me
-          </button>
         </div>
       </div>
     </div>
