@@ -53,7 +53,7 @@ function AdminAddTask() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/admin/task', bodyObject, axiosConfig)
+      const response = await axios.post('https://tasmang-backend.kuchbhimingwal.com/admin/task', bodyObject, axiosConfig)
       // console.log(response);
       setPri(priorities[0]);
       setUser(users[0].firstname);

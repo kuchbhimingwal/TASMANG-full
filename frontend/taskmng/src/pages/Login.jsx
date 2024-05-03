@@ -26,7 +26,7 @@ function Login() {
     }
      
     try {
-      const response = await axios.get('http://localhost:3001/user/signin', axiosConfig)
+      const response = await axios.get('https://tasmang-backend.kuchbhimingwal.com/user/signin', axiosConfig)
       // console.log(response.data)
       localStorage.setItem('Token',response.data.token);
       const token = "Bearer" + " " + response.data.token;
@@ -36,8 +36,8 @@ function Login() {
         }
       }
       try {
-        const users = await axios.get('http://localhost:3001/user/getUsers', axiosConfig2)
-        const user = await axios.get('http://localhost:3001/user/getuser', axiosConfig2)
+        const users = await axios.get('https://tasmang-backend.kuchbhimingwal.com/user/getUsers', axiosConfig2)
+        const user = await axios.get('https://tasmang-backend.kuchbhimingwal.com/user/getuser', axiosConfig2)
         // console.log(user.data);
         dispatch(loggeed());
         dispatch(addUsers(users.data));

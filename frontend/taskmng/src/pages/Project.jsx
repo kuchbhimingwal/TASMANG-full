@@ -20,7 +20,7 @@ function Project() {
         }
       }
       try {
-        const response = await axios.get(`http://localhost:3001/user/tasksInProject?projectId=${projectId}`,axiosConfig)
+        const response = await axios.get(`https://tasmang-backend.kuchbhimingwal.com/user/tasksInProject?projectId=${projectId}`,axiosConfig)
         setTasksInProjects(response.data);
       } catch (error) {
         console.error(error);

@@ -25,7 +25,7 @@ function Signup() {
       password: password
     }
     try {
-      const response = await axios.post('http://localhost:3001//user/signup', bodyObj)
+      const response = await axios.post('https://tasmang-backend.kuchbhimingwal.com//user/signup', bodyObj)
       console.log(response.data.token);
       // localStorage.setItem('Token',response.data.token);
       // dispatch(loggeed());
